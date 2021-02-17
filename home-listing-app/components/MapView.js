@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, Image, StyleSheet, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  ActivityIndicator,
+  TouchableOpacity,
+} from "react-native";
 
 const MapView = (props) => {
   let imagePreviewUrl;
@@ -9,13 +16,16 @@ const MapView = (props) => {
   }
 
   return (
-    <View style={{ ...styles.mapPreview, ...props.style }}>
+    <TouchableOpacity
+      onPress={props.map}
+      style={{ ...styles.mapPreview, ...props.style }}
+    >
       {imagePreviewUrl ? (
         <Image style={styles.mapImage} source={{ uri: imagePreviewUrl }} />
       ) : (
         props.children
       )}
-    </View>
+    </TouchableOpacity>
   );
 };
 

@@ -13,7 +13,7 @@ const schema = yup.object().shape({
   image: yup.string().required(),
 });
 
-const AddScreen = (props) => {
+const AddScreen = (prop) => {
   const dispatch = useDispatch();
 
   return (
@@ -22,7 +22,7 @@ const AddScreen = (props) => {
       validationSchema={schema}
       onSubmit={(values) => {
         dispatch(Actions.addPlace(values));
-        props.navigation.goBack();
+        prop.navigation.goBack();
       }}
     >
       {(props) => {
@@ -43,7 +43,7 @@ const AddScreen = (props) => {
               {props.touched.title && props.errors.title}
             </Text>
             <Img ImgUri={takeImage} />
-            <Location />
+            <Location navigation={prop.navigation} />
             <Text style={{ ...styles.text, ...{ color: "red" } }}>
               {props.touched.image && props.errors.image}
             </Text>

@@ -54,14 +54,24 @@ const LocationPicker = (props) => {
 
   return (
     <View style={styles.locationPicker}>
-      <MapPreview style={styles.mapPreview} location={pickedLocation}>
+      <MapPreview
+        map={() => props.navigation.navigate("Map")}
+        style={styles.mapPreview}
+        location={pickedLocation}
+      >
         {isFetching ? (
           <ActivityIndicator size="large" />
         ) : (
           <Text>No location chosen yet!</Text>
         )}
       </MapPreview>
-      <Button title="Get User Location" onPress={getLocationHandler} />
+      <View style={styles.button}>
+        <Button
+          title="Get User on Map"
+          onPress={() => props.navigation.navigate("Map")}
+        />
+        <Button title="Get User Location" onPress={getLocationHandler} />
+      </View>
     </View>
   );
 };
@@ -76,6 +86,10 @@ const styles = StyleSheet.create({
     height: 150,
     borderColor: "#ccc",
     borderWidth: 1,
+  },
+  button: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
   },
 });
 
